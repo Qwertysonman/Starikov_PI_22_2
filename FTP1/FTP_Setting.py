@@ -6,7 +6,7 @@ import os
 desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
 
 # Путь к новой папке на рабочем столе
-folder_path = os.path.join(desktop_path, 'Folder_for_test')
+folder_path = os.path.join(os.getcwd(), 'Folder_for_test')
 
 # Создание папки на рабочем столе
 os.makedirs(folder_path, exist_ok=True)
@@ -17,3 +17,4 @@ User_path = os.path.join(os.getcwd(), 'User_file.txt')
 '''Задание пути существующей папки'''
 
 # folder_path = 
+
