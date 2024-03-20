@@ -20,7 +20,11 @@ def log(com, dat1 = ''):
         elif com == 4:
             file.write(f'Пользователь {us_name} сделал следующее действие: Записал данные в файл {dat1}\n')
         elif com == 5:
-            file.write(f'Пользователь {us_name} сделал следующее действие: Скопировали файл {dat1}\n')
+            file.write(f'Пользователь {us_name} сделал следующее действие: Скопировал файл {dat1}\n')
+        elif com == 6:
+            file.write(f'Пользователь {us_name} сделал следующее действие: Удалил директорию {dat1}\n')
+        elif com == 7:
+            file.write(f'Пользователь {us_name} сделал следующее действие: Удалил файл {dat1}\n')            
 
             
 def list_files(stdscr, select_row):
@@ -200,12 +204,15 @@ def main(stdscr):
                 if not os.path.isdir(file):
                     bloak_read = True
                     rename_file(stdscr, file)
+                    
             elif key == ord('-'):
                 file = os.listdir()[current_row_idx]
                 if os.path.isdir(file):
+                    log(6, file)
                     os.rmdir(file)
                 else:
                     os.remove(file) 
+                    log(7, file)
             elif key == ord('+'):
                 file = os.getcwd()
                 add_file(stdscr, file)
@@ -223,7 +230,7 @@ def main(stdscr):
                 if not os.path.isdir(file):
                     bloak_read = True
                     if key == ord('c'):
-                        copy_move_file(stdscr, file, 0)   
+                        copy_move_file(stdscr, file, 0)
                     else: 
                         copy_move_file(stdscr, file, 1)
             elif key == 27:
